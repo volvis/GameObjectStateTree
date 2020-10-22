@@ -7,6 +7,12 @@ namespace Aijai
 {
     public class ScenarioTreeNode : MonoBehaviour
     {
+        public UnityEvent OnEnabled;
+        public UnityEvent OnDisabled;
+
+        private void OnEnable() => OnEnabled.Invoke();
+        private void OnDisable() => OnDisabled.Invoke();
+
         public void MoveNext() => GetComponentInParent<ScenarioTree>().MoveNext(this);
 
         [ContextMenu("Move NodeTree Here")]
