@@ -8,6 +8,8 @@ public class ScenarioTree : MonoBehaviour
     List<ScenarioTreeNode> Nodes;
     public ScenarioTreeNode Current;
 
+    [SerializeField]
+    bool UseLogging;
 
     private void Awake()
     {
@@ -49,7 +51,9 @@ public class ScenarioTree : MonoBehaviour
             {
                 if (TargetRoute.Contains(CurrentRoute[i]) == false)
                 {
-                    Debug.Log($"Disabling Node {CurrentRoute[i].gameObject.name}", CurrentRoute[i].gameObject);
+                    if (UseLogging)
+                        Debug.Log($"Disabling Node {CurrentRoute[i].gameObject.name}", CurrentRoute[i].gameObject);
+
                     CurrentRoute[i].gameObject.SetActive(false);
                 }
                 else
@@ -60,7 +64,9 @@ public class ScenarioTree : MonoBehaviour
 
             for (var i = 0; i < TargetRoute.Count; i++)
             {
-                Debug.Log($"Enabling Node {TargetRoute[i].gameObject.name}", TargetRoute[i].gameObject);
+                if (UseLogging)
+                    Debug.Log($"Enabling Node {TargetRoute[i].gameObject.name}", TargetRoute[i].gameObject);
+
                 TargetRoute[i].gameObject.SetActive(true);
             }
 
@@ -77,16 +83,11 @@ public class ScenarioTree : MonoBehaviour
         {
             Route.Add(From.transform);
             Transform Next = From.transform.parent;
-            while(Next != null & Next.TryGetComponent(out ScenarioTree _) == false)
+            while (Next != null & Next.TryGetComponent(out ScenarioTree _) == false)
             {
                 Route.Add(Next.transform);
                 Next = Next.transform.parent;
             }
-            /*while (MoveUp(From, out Next))
-            {
-                Route.Add(Next);
-                From = Next;
-            }*/
         }
         return Route;
     }
