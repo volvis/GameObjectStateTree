@@ -1,5 +1,5 @@
 {
-  "name": "org.aijai.GameObjectNodeTree",
+  "name": "org.aijai.gameobjectnodetree",
   "version": "1.2.3",
   "displayName": "GameObject Node Tree",
   "description": "Node tree in GameObject form",

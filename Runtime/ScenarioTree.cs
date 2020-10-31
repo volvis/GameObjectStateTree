@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Aijai
+namespace Aijai.Utils.ScenarioTrees
 {
     public class ScenarioTree : MonoBehaviour
     {
